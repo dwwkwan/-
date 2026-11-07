@@ -88,17 +88,15 @@ with col2:
         if st.button("위험", on_click=on_button_click):
             pass
     else:
-        # '안녕' 텍스트 출력과 동시에 콩그리 점프스케어 밈 영상(유튜브) 출력
+        # '안녕' 텍스트 출력과 동시에 해당 유튜브 영상의 1분 36초(96초)부터 1분 45초(105초) 구간 재생
         st.markdown('<div class="hello-text">안녕</div>', unsafe_allow_html=True)
         st.markdown(
             """
             <div style="display: flex; justify-content: center; margin-top: 20px;">
-                <iframe width="1" height="1" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="autoplay"></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/jpjl0PGjMF8?start=96&end=105&autoplay=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             """,
             unsafe_allow_html=True
         )
-        # 실제 콩그리 드랍 파트 영상 링크를 원하시면 아래처럼 콩그리 영상 ID를 넣으실 수 있습니다.
-        # st.video("https://www.youtube.com/watch?v=콩그리영상코드", autoplay=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
