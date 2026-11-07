@@ -1,68 +1,94 @@
 import streamlit as st
 
-# 페이지 스타일 설정 (배경 초록색, 버튼 및 텍스트 디자인)
+# 페이지 스타일 설정 (초록색 배경 및 무서운 분위기의 빨간 버튼 스타일)
 st.markdown(
     """
     <style>
     /* 전체 앱 배경 초록색 */
     .stApp {
-        background-color: #2ECC71;
+        background-color: #1b3822;
     }
     
-    /* 화면 중앙 배치용 컨테이너 */
-    .center-container {
+    /* 화면 전체를 채우는 중앙 정렬 컨테이너 */
+    .center-wrapper {
         display: flex;
-        flex-direction: column;
-        align-items: center;
         justify-content: center;
-        height: 70vh;
+        align-items: center;
+        height: 75vh;
+        width: 100%;
     }
 
-    /* 동그란 빨간색 버튼 스타일 */
+    /* Streamlit 버튼을 감싸는 div를 중앙으로 정렬 */
+    .stButton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* 피처럼 붉고 음산한 동그란 버튼 스타일 */
     div.stButton > button {
-        background-color: #E74C3C;
-        color: white;
-        border-radius: 50%;
-        width: 140px;
-        height: 140px;
-        border: none;
+        background: radial-gradient(circle, #8B0000 0%, #3a0000 100%) !important;
+        color: #ffcccc !important;
+        border-radius: 50% !important;
+        width: 160px !important;
+        height: 160px !important;
+        min-height: unset !important;
+        border: 3px solid #ff0000 !important;
         font-size: 20px;
         font-weight: bold;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        font-family: 'Courier New', Courier, monospace;
+        letter-spacing: 2px;
+        box-shadow: 0 0 25px #ff0000, inset 0 0 15px #000000 !important;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+        animation: pulse-horror 2s infinite;
     }
-    div.stButton > button:hover {
-        background-color: #C0392B;
-        color: white;
+    
+    /* 공포스러운 호러 맥박 애니메이션 */
+    @keyframes pulse-horror {
+        0% { transform: scale(1); box-shadow: 0 0 15px #8B0000, inset 0 0 15px #000; }
+        50% { transform: scale(1.05); box-shadow: 0 0 35px #ff0000, inset 0 0 25px #3a0000; }
+        100% { transform: scale(1); box-shadow: 0 0 15px #8B0000, inset 0 0 15px #000; }
     }
 
-    /* 검은색 '안녕' 텍스트 스타일 */
+    div.stButton > button:hover {
+        background: radial-gradient(circle, #ff0000 0%, #5a0000 100%) !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 45px #ff0000, inset 0 0 20px #000000 !important;
+    }
+
+    /* 검은색 '안녕' 텍스트 스타일 (섬뜩한 분위기) */
     .hello-text {
-        color: black;
-        font-size: 64px;
+        color: #000000;
+        font-size: 80px;
         font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
         text-align: center;
+        width: 100%;
+        text-shadow: 2px 2px 10px rgba(255, 0, 0, 0.5);
     }
     </style>
     """,
     unsafe_allow_html=True,
 )
 
-# 세션 상태를 이용해 버튼 클릭 여부 저장
+# 세션 상태 초기화
 if "clicked" not in st.session_state:
     st.session_state.clicked = False
 
 def on_button_click():
     st.session_state.clicked = True
 
-# 중앙 컨테이너 시작
-st.markdown('<div class="center-container">', unsafe_allow_html=True)
+# 화면 중앙 배치를 위한 HTML 레이아웃
+st.markdown('<div class="center-wrapper">', unsafe_allow_html=True)
 
-if not st.session_state.clicked:
-    # 빨간색 동그란 버튼
-    if st.button("클릭", on_click=on_button_click):
-        pass
-else:
-    # 검은색 '안녕' 글씨
-    st.markdown('<div class="hello-text">안녕</div>', unsafe_allow_html=True)
+col1, col2, col3 = st.columns([1, 1, 1])
 
-st.markdown("</div>", unsafe_allow_html=True)
+with col2:
+    if not st.session_state.clicked:
+        if st.button("위험", on_click=on_button_click):
+            pass
+    else:
+        st.markdown('<div class="hello-text">안녕</div>', unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
