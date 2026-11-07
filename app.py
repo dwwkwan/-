@@ -1,6 +1,6 @@
 import streamlit as st
 
-# 페이지 스타일 설정 (초록색 배경 및 무서운 분위기의 빨간 버튼 스타일)
+# 페이지 설정 및 CSS 스타일 (콩그리 밈 연출 및 공포스러운 버튼)
 st.markdown(
     """
     <style>
@@ -44,7 +44,6 @@ st.markdown(
         animation: pulse-horror 2s infinite;
     }
     
-    /* 공포스러운 호러 맥박 애니메이션 */
     @keyframes pulse-horror {
         0% { transform: scale(1); box-shadow: 0 0 15px #8B0000, inset 0 0 15px #000; }
         50% { transform: scale(1.05); box-shadow: 0 0 35px #ff0000, inset 0 0 25px #3a0000; }
@@ -57,7 +56,7 @@ st.markdown(
         box-shadow: 0 0 45px #ff0000, inset 0 0 20px #000000 !important;
     }
 
-    /* 검은색 '안녕' 텍스트 스타일 (섬뜩한 분위기) */
+    /* 검은색 '안녕' 텍스트 스타일 */
     .hello-text {
         color: #000000;
         font-size: 80px;
@@ -89,6 +88,17 @@ with col2:
         if st.button("위험", on_click=on_button_click):
             pass
     else:
+        # '안녕' 텍스트 출력과 동시에 콩그리 점프스케어 밈 영상(유튜브) 출력
         st.markdown('<div class="hello-text">안녕</div>', unsafe_allow_html=True)
+        st.markdown(
+            """
+            <div style="display: flex; justify-content: center; margin-top: 20px;">
+                <iframe width="1" height="1" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" frameborder="0" allow="autoplay"></iframe>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        # 실제 콩그리 드랍 파트 영상 링크를 원하시면 아래처럼 콩그리 영상 ID를 넣으실 수 있습니다.
+        # st.video("https://www.youtube.com/watch?v=콩그리영상코드", autoplay=True)
 
 st.markdown('</div>', unsafe_allow_html=True)
